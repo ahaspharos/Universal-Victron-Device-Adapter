@@ -187,7 +187,6 @@ VictronBridge is built around a simple principle:
 
 The system consists of four layers.
 
-```text
 ┌─────────────────────┐
 │ Source Adapters     │
 └──────────┬──────────┘
