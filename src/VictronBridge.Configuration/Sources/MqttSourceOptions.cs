@@ -2,7 +2,7 @@
 
 public sealed class MqttSourceOptions
 {
-    public const string SectionName = "Source:Mqtt";
+    public const string SectionName = "Bridge:Source:Mqtt";
 
     public string Host { get; set; } = string.Empty;
     public int Port { get; set; } = 1883;

@@ -3,12 +3,38 @@
 
 Bridge:
   Source:
-    Type: mqtt
-    Host: 192.168.1.100
-    Port: 1883
-    # Username: user
-    # Password: secret
-    # UseTls: false
+    Type: mqtt       # mqtt | modbustcp | modbusrtu | http
+
+    # MQTT settings — used when Type: mqtt
+    Mqtt:
+      Host: 192.168.1.100
+      Port: 1883
+      # Username:
+      # Password:
+      # UseTls: false
+      ClientId: victronbridge
+      KeepAliveSeconds: 60
+      Topics:
+        - battery/#
+
+    # Modbus TCP settings — used when Type: modbustcp
+    ModbusTcp:
+      Host: 192.168.1.200
+      Port: 502
+      UnitId: 1
+      PollingIntervalSeconds: 5
+
+    # Modbus RTU settings — used when Type: modbusrtu
+    ModbusRtu:
+      SerialPort: /dev/ttyUSB0
+      BaudRate: 9600
+      UnitId: 1
+      PollingIntervalSeconds: 5
+
+    # HTTP settings — used when Type: http
+    Http:
+      BaseUrl: http://192.168.1.50/api
+      PollingIntervalSeconds: 30
 
   Device:
     Type: battery
@@ -20,29 +46,3 @@ Bridge:
     soc: battery/soc
     voltage: battery/voltage
     current: battery/current
-
-# Source-specific options (used when Source.Type matches)
-Source:
-  Mqtt:
-    Host: 192.168.1.100
-    Port: 1883
-    ClientId: victronbridge
-    KeepAliveSeconds: 60
-    Topics:
-      - battery/#
-
-  ModbusTcp:
-    Host: 192.168.1.200
-    Port: 502
-    UnitId: 1
-    PollingIntervalSeconds: 5
-
-  ModbusRtu:
-    SerialPort: /dev/ttyUSB0
-    BaudRate: 9600
-    UnitId: 1
-    PollingIntervalSeconds: 5
-
-  Http:
-    BaseUrl: http://192.168.1.50/api
-    PollingIntervalSeconds: 30

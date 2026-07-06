@@ -2,7 +2,7 @@
 
 public sealed class ModbusTcpSourceOptions
 {
-    public const string SectionName = "Source:ModbusTcp";
+    public const string SectionName = "Bridge:Source:ModbusTcp";
 
     public string Host { get; set; } = string.Empty;
     public int Port { get; set; } = 502;

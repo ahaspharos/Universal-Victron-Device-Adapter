@@ -12,7 +12,7 @@ public sealed class BridgeOptionsValidatorTests
     {
         var options = new BridgeOptions
         {
-            Source = new SourceOptions { Type = "mqtt", Host = "localhost" },
+            Source = new SourceOptions { Type = "mqtt" },
             Device = new DeviceOptions
             {
                 Type = "battery",
@@ -30,7 +30,7 @@ public sealed class BridgeOptionsValidatorTests
     {
         var options = new BridgeOptions
         {
-            Source = new SourceOptions { Host = "localhost" },
+            Source = new SourceOptions(),
             Device = new DeviceOptions
             {
                 Type = "battery",
@@ -49,7 +49,7 @@ public sealed class BridgeOptionsValidatorTests
     {
         var options = new BridgeOptions
         {
-            Source = new SourceOptions { Type = "mqtt", Host = "localhost" },
+            Source = new SourceOptions { Type = "mqtt" },
             Device = new DeviceOptions { ServiceName = "com.victronenergy.battery.test" }
         };
 
@@ -64,7 +64,7 @@ public sealed class BridgeOptionsValidatorTests
     {
         var options = new BridgeOptions
         {
-            Source = new SourceOptions { Type = "mqtt", Host = "localhost" },
+            Source = new SourceOptions { Type = "mqtt" },
             Device = new DeviceOptions { Type = "battery" }
         };
 

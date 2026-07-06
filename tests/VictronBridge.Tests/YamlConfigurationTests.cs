@@ -13,8 +13,6 @@ public sealed class YamlConfigurationTests
             Bridge:
               Source:
                 Type: mqtt
-                Host: 192.168.1.100
-                Port: 1883
               Device:
                 Type: battery
                 ServiceName: com.victronenergy.battery.test
@@ -30,8 +28,6 @@ public sealed class YamlConfigurationTests
 
         Assert.NotNull(options);
         Assert.Equal("mqtt", options.Source.Type);
-        Assert.Equal("192.168.1.100", options.Source.Host);
-        Assert.Equal(1883, options.Source.Port);
         Assert.Equal("battery", options.Device.Type);
         Assert.Equal("com.victronenergy.battery.test", options.Device.ServiceName);
         Assert.Equal("Test Battery", options.Device.ProductName);
@@ -47,7 +43,6 @@ public sealed class YamlConfigurationTests
             Bridge:
               Source:
                 Type: mqtt
-                Host: 192.168.1.1
               Device:
                 Type: battery
                 ServiceName: com.victronenergy.battery.default
@@ -57,10 +52,7 @@ public sealed class YamlConfigurationTests
         var options = config.GetSection(BridgeOptions.SectionName).Get<BridgeOptions>();
 
         Assert.NotNull(options);
-        Assert.Equal(0, options.Source.Port);
-        Assert.Null(options.Source.Username);
-        Assert.Null(options.Source.Password);
-        Assert.False(options.Source.UseTls);
+        Assert.Equal("mqtt", options.Source.Type);
         Assert.Equal("VictronBridge Device", options.Device.ProductName);
         Assert.Equal(0, options.Device.DeviceInstance);
         Assert.Empty(options.Mappings);
@@ -70,18 +62,19 @@ public sealed class YamlConfigurationTests
     public void LoadYaml_MqttSourceOptions_BindsCorrectly()
     {
         var yaml = """
-            Source:
-              Mqtt:
-                Host: broker.local
-                Port: 8883
-                ClientId: bridge01
-                KeepAliveSeconds: 30
-                UseTls: true
-                Username: user
-                Password: pass
-                Topics:
-                  - battery/#
-                  - solar/#
+            Bridge:
+              Source:
+                Mqtt:
+                  Host: broker.local
+                  Port: 8883
+                  ClientId: bridge01
+                  KeepAliveSeconds: 30
+                  UseTls: true
+                  Username: user
+                  Password: pass
+                  Topics:
+                    - battery/#
+                    - solar/#
             """;
 
         var config = BuildConfigFromYaml(yaml);
@@ -105,12 +98,13 @@ public sealed class YamlConfigurationTests
     public void LoadYaml_ModbusTcpSourceOptions_BindsCorrectly()
     {
         var yaml = """
-            Source:
-              ModbusTcp:
-                Host: 10.0.0.5
-                Port: 502
-                UnitId: 2
-                PollingIntervalSeconds: 10
+            Bridge:
+              Source:
+                ModbusTcp:
+                  Host: 10.0.0.5
+                  Port: 502
+                  UnitId: 2
+                  PollingIntervalSeconds: 10
             """;
 
         var config = BuildConfigFromYaml(yaml);
@@ -128,12 +122,13 @@ public sealed class YamlConfigurationTests
     public void LoadYaml_ModbusRtuSourceOptions_BindsCorrectly()
     {
         var yaml = """
-            Source:
-              ModbusRtu:
-                SerialPort: /dev/ttyUSB0
-                BaudRate: 9600
-                UnitId: 1
-                PollingIntervalSeconds: 5
+            Bridge:
+              Source:
+                ModbusRtu:
+                  SerialPort: /dev/ttyUSB0
+                  BaudRate: 9600
+                  UnitId: 1
+                  PollingIntervalSeconds: 5
             """;
 
         var config = BuildConfigFromYaml(yaml);
@@ -151,13 +146,14 @@ public sealed class YamlConfigurationTests
     public void LoadYaml_HttpSourceOptions_BindsCorrectly()
     {
         var yaml = """
-            Source:
-              Http:
-                BaseUrl: http://device.local/api
-                PollingIntervalSeconds: 15
-                Headers:
-                  Authorization: Bearer token123
-                  Accept: application/json
+            Bridge:
+              Source:
+                Http:
+                  BaseUrl: http://device.local/api
+                  PollingIntervalSeconds: 15
+                  Headers:
+                    Authorization: Bearer token123
+                    Accept: application/json
             """;
 
         var config = BuildConfigFromYaml(yaml);

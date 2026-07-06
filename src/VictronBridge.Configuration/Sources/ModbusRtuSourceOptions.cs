@@ -2,7 +2,7 @@
 
 public sealed class ModbusRtuSourceOptions
 {
-    public const string SectionName = "Source:ModbusRtu";
+    public const string SectionName = "Bridge:Source:ModbusRtu";
 
     public string SerialPort { get; set; } = string.Empty;
     public int BaudRate { get; set; } = 9600;
