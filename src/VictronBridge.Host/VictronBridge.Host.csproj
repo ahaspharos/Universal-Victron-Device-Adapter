@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-VictronBridge.Host-b7740286-e581-4a0a-bd13-e00b2d911236</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bridge.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VictronBridge.Core\VictronBridge.Core.csproj" />
+    <ProjectReference Include="..\VictronBridge.Configuration\VictronBridge.Configuration.csproj" />
+    <ProjectReference Include="..\VictronBridge.Mapping\VictronBridge.Mapping.csproj" />
+    <ProjectReference Include="..\VictronBridge.Models\VictronBridge.Models.csproj" />
+    <ProjectReference Include="..\VictronBridge.DBus\VictronBridge.DBus.csproj" />
+    <ProjectReference Include="..\Sources\VictronBridge.Sources.Mqtt\VictronBridge.Sources.Mqtt.csproj" />
+    <ProjectReference Include="..\Devices\VictronBridge.Devices.Battery\VictronBridge.Devices.Battery.csproj" />
+    <ProjectReference Include="..\Devices\VictronBridge.Devices.PvInverter\VictronBridge.Devices.PvInverter.csproj" />
+    <ProjectReference Include="..\Devices\VictronBridge.Devices.GridMeter\VictronBridge.Devices.GridMeter.csproj" />
+    <ProjectReference Include="..\Devices\VictronBridge.Devices.Tank\VictronBridge.Devices.Tank.csproj" />
+    <ProjectReference Include="..\Devices\VictronBridge.Devices.Temperature\VictronBridge.Devices.Temperature.csproj" />
+  </ItemGroup>
+</Project>

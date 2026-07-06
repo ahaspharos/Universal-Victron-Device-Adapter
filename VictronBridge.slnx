@@ -1,0 +1,26 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/VictronBridge.Configuration/VictronBridge.Configuration.csproj" />
+    <Project Path="src/VictronBridge.Core/VictronBridge.Core.csproj" />
+    <Project Path="src/VictronBridge.DBus/VictronBridge.DBus.csproj" />
+    <Project Path="src/VictronBridge.Host/VictronBridge.Host.csproj" />
+    <Project Path="src/VictronBridge.Mapping/VictronBridge.Mapping.csproj" />
+    <Project Path="src/VictronBridge.Models/VictronBridge.Models.csproj" />
+  </Folder>
+  <Folder Name="/src/Devices/">
+    <Project Path="src/Devices/VictronBridge.Devices.Battery/VictronBridge.Devices.Battery.csproj" />
+    <Project Path="src/Devices/VictronBridge.Devices.GridMeter/VictronBridge.Devices.GridMeter.csproj" />
+    <Project Path="src/Devices/VictronBridge.Devices.PvInverter/VictronBridge.Devices.PvInverter.csproj" />
+    <Project Path="src/Devices/VictronBridge.Devices.Tank/VictronBridge.Devices.Tank.csproj" />
+    <Project Path="src/Devices/VictronBridge.Devices.Temperature/VictronBridge.Devices.Temperature.csproj" />
+  </Folder>
+  <Folder Name="/src/Sources/">
+    <Project Path="src/Sources/VictronBridge.Sources.Http/VictronBridge.Sources.Http.csproj" />
+    <Project Path="src/Sources/VictronBridge.Sources.ModbusRtu/VictronBridge.Sources.ModbusRtu.csproj" />
+    <Project Path="src/Sources/VictronBridge.Sources.ModbusTcp/VictronBridge.Sources.ModbusTcp.csproj" />
+    <Project Path="src/Sources/VictronBridge.Sources.Mqtt/VictronBridge.Sources.Mqtt.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/VictronBridge.Tests/VictronBridge.Tests.csproj" />
+  </Folder>
+</Solution>

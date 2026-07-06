@@ -1,0 +1,48 @@
+# VictronBridge configuration
+# Copy this file to bridge.override.yaml and adjust the values for your setup.
+
+Bridge:
+  Source:
+    Type: mqtt
+    Host: 192.168.1.100
+    Port: 1883
+    # Username: user
+    # Password: secret
+    # UseTls: false
+
+  Device:
+    Type: battery
+    ServiceName: com.victronenergy.battery.mqtt01
+    ProductName: MQTT Battery
+    DeviceInstance: 0
+
+  Mappings:
+    soc: battery/soc
+    voltage: battery/voltage
+    current: battery/current
+
+# Source-specific options (used when Source.Type matches)
+Source:
+  Mqtt:
+    Host: 192.168.1.100
+    Port: 1883
+    ClientId: victronbridge
+    KeepAliveSeconds: 60
+    Topics:
+      - battery/#
+
+  ModbusTcp:
+    Host: 192.168.1.200
+    Port: 502
+    UnitId: 1
+    PollingIntervalSeconds: 5
+
+  ModbusRtu:
+    SerialPort: /dev/ttyUSB0
+    BaudRate: 9600
+    UnitId: 1
+    PollingIntervalSeconds: 5
+
+  Http:
+    BaseUrl: http://192.168.1.50/api
+    PollingIntervalSeconds: 30
