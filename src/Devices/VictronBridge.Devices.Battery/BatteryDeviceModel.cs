@@ -57,6 +57,12 @@ public sealed class BatteryDeviceModel : DeviceModelBase
         set => SetValue(DbusPath.Capacity, value);
     }
 
+    public double? ConsumedAmphours
+    {
+        get => GetValue(DbusPath.ConsumedAmphours) as double?;
+        set => SetValue(DbusPath.ConsumedAmphours, value);
+    }
+
     public double? InstalledCapacity
     {
         get => GetValue(DbusPath.InstalledCapacity) as double?;
@@ -179,6 +185,9 @@ public sealed class BatteryDeviceModel : DeviceModelBase
                 case "capacity":
                     Capacity = ToDouble(value);
                     break;
+                case "consumedamphours":
+                    ConsumedAmphours = ToDouble(value);
+                    break;
                 case "installedcapacity":
                     InstalledCapacity = ToDouble(value);
                     break;
@@ -275,6 +284,7 @@ public sealed class BatteryDeviceModel : DeviceModelBase
         public const string Temperature = "/Dc/0/Temperature";
         public const string Capacity = "/Capacity";
         public const string InstalledCapacity = "/InstalledCapacity";
+        public const string ConsumedAmphours = "/ConsumedAmphours";
         public const string TimeToGo = "/TimeToGo";
         public const string Connected = "/Connected";
         public const string State = "/State";
