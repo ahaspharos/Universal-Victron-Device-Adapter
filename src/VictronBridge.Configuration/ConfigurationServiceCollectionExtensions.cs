@@ -17,6 +17,10 @@ public static class ConfigurationServiceCollectionExtensions
             .ValidateOnStart();
 
         services
+            .AddOptions<DeviceOptions>()
+            .Bind(configuration.GetSection($"{BridgeOptions.SectionName}:Device"));
+
+        services
             .AddOptions<MqttSourceOptions>()
             .Bind(configuration.GetSection(MqttSourceOptions.SectionName));
 

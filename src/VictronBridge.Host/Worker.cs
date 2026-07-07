@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using VictronBridge.Configuration;
 using VictronBridge.Core.Abstractions;
 using VictronBridge.Core.Events;
+using VictronBridge.DBus;
 
 namespace VictronBridge.Host;
 
@@ -40,6 +41,15 @@ public sealed class Worker : BackgroundService
             "VictronBridge started. Source={Source} Device={Device}",
             _options.Source.Type,
             _options.Device.ServiceName);
+
+        // Initialise D-Bus once at startup with the seeded device model values
+        if (_dbusPublisher is VenusDbusPublisher venusPublisher)
+        {
+            await venusPublisher.InitialiseAsync(
+                _deviceModel.ServiceName,
+                _deviceModel.GetDbusValues(),
+                stoppingToken);
+        }
 
         _source.ValueReceived += OnValueReceived;
 
@@ -95,7 +105,7 @@ public sealed class Worker : BackgroundService
             var mapped = _mappingEngine.Map(snapshot, _options.Mappings);
             _deviceModel.ApplyValues(mapped);
 
-            var dbusValues = _deviceModel.GetDbusValues();
+            var dbusValues = _deviceModel.GetDbusValues();            
             await _dbusPublisher.PublishAsync(_deviceModel.ServiceName, dbusValues);
         }
         catch (Exception ex)

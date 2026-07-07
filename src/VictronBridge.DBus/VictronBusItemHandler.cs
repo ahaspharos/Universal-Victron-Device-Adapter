@@ -119,8 +119,10 @@ internal sealed class VictronBusItemHandler : IPathMethodHandler
     internal MessageBuffer CreatePropertiesChangedSignal(DBusConnection connection)
     {
         var writer = connection.GetMessageWriter();
+        // destination must be null for broadcast signals — passing the service name
+        // unicasts the signal to ourselves and Venus OS never receives it.
         writer.WriteSignalHeader(
-            _serviceName,
+            destination: null,
             _path,
             VictronInterface.BusItem,
             VictronInterface.PropertiesChanged,

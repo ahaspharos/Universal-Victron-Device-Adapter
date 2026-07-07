@@ -227,6 +227,28 @@ public sealed class BatteryDeviceModel : DeviceModelBase
 
     private void Seed()
     {
+        // Seed all known paths with null so every path is registered on D-Bus at startup.
+        // Venus OS treats a variant of type "i" value 0 as "no valid data" for numeric paths.
+        SetValue(DbusPath.Soc, null);
+        SetValue(DbusPath.Voltage, null);
+        SetValue(DbusPath.Current, null);
+        SetValue(DbusPath.Power, null);
+        SetValue(DbusPath.Temperature, null);
+        SetValue(DbusPath.Capacity, null);
+        SetValue(DbusPath.InstalledCapacity, null);
+        SetValue(DbusPath.TimeToGo, null);
+        SetValue(DbusPath.State, null);
+        SetValue(DbusPath.AlarmLowVoltage, null);
+        SetValue(DbusPath.AlarmHighVoltage, null);
+        SetValue(DbusPath.AlarmLowSoc, null);
+        SetValue(DbusPath.AlarmLowTemperature, null);
+        SetValue(DbusPath.AlarmHighTemperature, null);
+        SetValue(DbusPath.MinimumCellVoltage, null);
+        SetValue(DbusPath.MaximumCellVoltage, null);
+        SetValue(DbusPath.ChargedEnergy, null);
+        SetValue(DbusPath.DischargedEnergy, null);
+
+        // Identity paths — always valid from configuration
         ProductName = _options.ProductName;
         DeviceInstance = _options.DeviceInstance;
         Connected = 0;
